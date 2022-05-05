@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unused-modules */
 import { OpenSeaAPI } from "./api";
 import { OpenSeaPort } from "./seaport";
-import { Network, EventData, EventType } from "./types";
+import { Network, EventData, EventType, GasOptions } from "./types";
 export { orderToJSON, orderFromJSON, WyvernProtocol } from "./utils/utils";
 export {
   encodeCall,
@@ -33,6 +33,7 @@ export {
   // Types to help initialize SDK and listen to events.
   EventType,
   Network,
+  GasOptions
 };
 
 export type { EventData };
