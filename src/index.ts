@@ -33,7 +33,6 @@ export {
   // Types to help initialize SDK and listen to events.
   EventType,
   Network,
-  GasOptions
 };
 
-export type { EventData };
+export type { EventData, GasOptions };
