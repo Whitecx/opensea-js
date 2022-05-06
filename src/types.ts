@@ -105,11 +105,11 @@ export interface OpenSeaAPIConfig {
 }
 
 /*Options for customizing gas according to EIP-1559
-*/
+ */
 
 export type GasOptions = {
-    maxPriorityFeePerGas: number,
-    maxFeePerGas: number
+  maxPriorityFeePerGas: number | null;
+  maxFeePerGas: number | null;
 };
 
 export type WyvernConfig = WyvernProtocolConfig & {
