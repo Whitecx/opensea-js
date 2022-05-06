@@ -2245,20 +2245,18 @@ export class OpenSeaPort {
    * Add EIP-1559 gas options to a transaction object
    * @param gasOptions The optional txn params for tipping
    */
-  
-   public _addGasParams(
-       txnData: any, 
-       gasOptions?: GasOptions
-   ): any {
-       if(gasOptions && gasOptions.maxFeePerGas){
-           txnData.maxFeePerGas = gasOptions.maxFeePerGas;
-       }
-       if(gasOptions && gasOptions.maxPriorityFeePerGas){
-           txnData.maxPriorityFeePerGas = gasOptions.maxPriorityFeePerGas;
-       }
-       return txnData;
-   }
 
+  public _addGasParams(txnData: any, gasOptions?: GasOptions): any {
+    if (gasOptions && gasOptions.maxFeePerGas) {
+      txnData.maxFeePerGas = Web3.utils.toHex(gasOptions.maxFeePerGas);
+    }
+    if (gasOptions && gasOptions.maxPriorityFeePerGas) {
+      txnData.maxPriorityFeePerGas = Web3.utils.toHex(
+        gasOptions.maxPriorityFeePerGas
+      );
+    }
+    return txnData;
+  }
 
   /**
    * Estimate the gas needed to match two orders. Returns undefined if tx errors
@@ -4064,7 +4062,7 @@ export class OpenSeaPort {
     sell: Order;
     accountAddress: string;
     metadata?: string;
-    gasOptions?: GasOptions ;
+    gasOptions?: GasOptions;
   }) {
     let value;
     let shouldValidateBuy = true;
@@ -4111,10 +4109,13 @@ export class OpenSeaPort {
     });
 
     let txHash;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        //set EIP-1559 gas options if they exist
-    const txnData: any = this._addGasParams({ from: accountAddress, value }, gasOptions);
-    
+
+    //set EIP-1559 gas options if they exist
+    const txnData: any = this._addGasParams(
+      { from: accountAddress, value },
+      gasOptions
+    );
+
     const args: WyvernAtomicMatchParameters = [
       [
         buy.exchange,
