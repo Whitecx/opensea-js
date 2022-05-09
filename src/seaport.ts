@@ -2248,12 +2248,10 @@ export class OpenSeaPort {
 
   public _addGasParams(txnData: any, gasOptions?: GasOptions): any {
     if (gasOptions && gasOptions.maxFeePerGas) {
-      txnData.maxFeePerGas = Web3.utils.toHex(gasOptions.maxFeePerGas);
+      txnData.maxFeePerGas = gasOptions.maxFeePerGas;
     }
     if (gasOptions && gasOptions.maxPriorityFeePerGas) {
-      txnData.maxPriorityFeePerGas = Web3.utils.toHex(
-        gasOptions.maxPriorityFeePerGas
-      );
+      txnData.maxPriorityFeePerGas = gasOptions.maxPriorityFeePerGas;
     }
     return txnData;
   }
