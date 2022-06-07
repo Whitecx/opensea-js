@@ -4180,6 +4180,9 @@ export class OpenSeaPort {
     // Estimate gas first
     try {
       // Typescript splat doesn't typecheck
+      /*
+         * Skip estimating gas as the _wyvernProtocolReadOnly provider won't work w/ local
+         * testing, and since we're using eip-1559 based txns, we don't need to set gas
       const gasEstimate = await this._wyvernProtocolReadOnly.wyvernExchange
         .atomicMatch_(
           args[0],
@@ -4195,8 +4198,8 @@ export class OpenSeaPort {
           args[10]
         )
         .estimateGasAsync(txnData);
-
-      txnData.gas = this._correctGasAmount(gasEstimate);
+       */
+      //txnData.gas = this._correctGasAmount(gasEstimate);
     } catch (error) {
       console.error(`Failed atomic match with args: `, args, error);
       throw new Error(
